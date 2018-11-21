@@ -1,0 +1,12 @@
+{
+    "python.linting.enabled": true,
+    "python.linting.lintOnSave": true,
+    "python.linting.maxNumberOfProblems": 100,
+    "python.linting.ignorePatterns": [
+        ".vscode/*.py",
+        "**/site-packages/**/*.py"
+    ],
+    "python.linting.pylintPath": "C:/Program Files/Python35/Scripts/pylint.exe",
+    "python.pythonPath": "C:\\Program Files\\Python35\\python.exe",
+    "python.linting.pep8Enabled": true,    
+}
