@@ -49,5 +49,14 @@ if __name__ == '__main__':
             print(row)
 
 
+'''
+todo
+- column validator
+- same column enable, query generate
+- make operation type (and, or)
+- type check and query generate
+- make result with column name
+- output filter (optional)
+'''
 
 
