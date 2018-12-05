@@ -34,7 +34,7 @@ class QueryGenerator:
         return result_query
 
 if __name__ == '__main__':
-    g = QueryGenerator('richgo', 'bok', 1, STAT_NAME='1.1.주요 통화금융지표', STAT_CODE='010Y002')
+    g = QueryGenerator('richgo', 'joinsland01', 1, STAT_NAME='1.1.주요 통화금융지표', STAT_CODE='010Y002')
     q = g.generate_query()
     print(q)
 
@@ -43,20 +43,13 @@ if __name__ == '__main__':
     conn = pymysql.connect(host=db_info.host, user=db_info.user, passwd=db_info.pw)
     conn.set_charset('utf8')
     with conn.cursor() as cur:
-        cur.execute(q)
-        rows = cur.fetchall()
-        for row in rows:
-            print(row)
-
-
-'''
-todo
-- column validator
-- same column enable, query generate
-- make operation type (and, or)
-- type check and query generate
-- make result with column name
-- output filter (optional)
-'''
-
-
+        try:
+            cur.execute(q)
+            desc = cur.description
+            result = [dict(zip([col[0] for col in desc], row))
+            for row in cur.fetchall()]
+        except Exception as e:
+            result = str(e)
+        finally:
+            conn.close()
+    print(result)
